@@ -21,6 +21,7 @@ const messages = document.querySelector("h2");
 
 /*----- event listeners -----*/
 document.getElementById("board").addEventListener("click", handleTurn);
+document.getElementById('reset-button').addEventListener('click', init);
 
 /*----- functions -----*/
 function render() {
@@ -28,7 +29,12 @@ function render() {
     squares[index].textContent = mark;
   });
 
-  messages.textContent = `It's ${turn}'s turn!`;
+  messages.textContent =
+    win === "T"
+      ? `That's a tie, queen!`
+      : win
+      ? `${win} wins the game!`
+      : `It's ${turn}'s turn!`;
 }
 
 function getWinner() {
@@ -42,16 +48,18 @@ function getWinner() {
     )
       winner = board[combo[0]];
   });
-  
-  messages.textContent = win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
 
-  return winner;
+  return winner ? winner : board.includes("") ? null : "T";
 }
 
 function handleTurn(event) {
   let index = squares.findIndex(function (square) {
     return square === event.target;
   });
+
+  if (board[index]) {
+    return null;
+  }
 
   board[index] = turn;
   win = getWinner();
