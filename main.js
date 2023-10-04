@@ -21,7 +21,7 @@ const messages = document.querySelector("h2");
 
 /*----- event listeners -----*/
 document.getElementById("board").addEventListener("click", handleTurn);
-document.getElementById('reset-button').addEventListener('click', init);
+document.getElementById("reset-button").addEventListener("click", init);
 
 /*----- functions -----*/
 function render() {
@@ -69,6 +69,8 @@ function handleTurn(event) {
 
 function init() {
   board = ["", "", "", "", "", "", "", "", ""];
+  win = null;
+  turn = "X";
   render();
 }
 

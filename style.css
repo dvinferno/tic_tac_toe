@@ -1,6 +1,7 @@
 body {
   text-align: center;
   font-family: "Open Sans", sans-serif;
+  background-color: beige;
 }
 
 h2 {
@@ -32,19 +33,22 @@ h2 {
   border: 2px solid rgba(0, 0, 0, 1);
   height: 140px;
   width: 140px;
+  text-align: center;
+  line-height: 140px;
+  font-size: 100px;
 }
 #reset-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #af2929;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #af2929;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 #reset-button:hover {
-    background-color: #851e1e;
-  }
+  background-color: #851e1e;
+}
