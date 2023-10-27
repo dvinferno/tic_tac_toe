@@ -25,7 +25,8 @@ function App() {
   ]);
 
   let gameOver = false;
-  let turn = "X";
+
+  const [turn, setTurn] = React.useState("X")
   let win;
 
   function handleTurn(event) {
@@ -38,19 +39,15 @@ function App() {
       newBoard[index] = turn;
       board[index] = turn;
       setBoard(newBoard);
-      turn = turn === "X" ? "O" : "X";
+      setTurn(turn === "X" ? "O" : "X");
       //win = getWinner();
-      //render();
     }
-    // if (board[index]) {
-    //   return null;
-    // }
   }
 
   return (
     <div>
       <h1>Tic-React-Toe</h1>
-      <h2>It's X's turn!</h2>
+      <h2>It's {turn}'s turn!</h2>
 
       <div class="flex-container flex-column">
         <div class="flex-container flex-wrap" id="board" onClick={handleTurn}>
