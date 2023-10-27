@@ -24,14 +24,26 @@ function App() {
     "",
   ]);
 
-  let gameOver = false;
-
+  const [gameOver, setGameOver] = React.useState(false)
   const [turn, setTurn] = React.useState("X")
-  let win;
+  const [win, setWin] = React.useState(null)
+
+  function getWinner() {
+    let winner = null;
+  
+    winningCombos.forEach(function (combo, index) {
+      if (
+        board[combo[0]] &&
+        board[combo[0]] === board[combo[1]] &&
+        board[combo[0]] === board[combo[2]]
+      )
+        winner = board[combo[0]];
+    });
+  
+    return winner ? winner : board.includes("") ? null : "T";
+  }
 
   function handleTurn(event) {
-    console.log(event.target, event.target.id);
-
     let index = event.target.id;
 
     if (gameOver == false) {
@@ -40,7 +52,12 @@ function App() {
       board[index] = turn;
       setBoard(newBoard);
       setTurn(turn === "X" ? "O" : "X");
-      //win = getWinner();
+      let winner = getWinner();
+      setWin(winner);
+      if (winner) {
+        setGameOver(true)
+      }
+      console.log(win);
     }
   }
 
@@ -48,6 +65,7 @@ function App() {
     <div>
       <h1>Tic-React-Toe</h1>
       <h2>It's {turn}'s turn!</h2>
+      <h2>{gameOver? `${win} wins the game!` : `It's ${turn}'s turn!`}</h2>
 
       <div class="flex-container flex-column">
         <div class="flex-container flex-wrap" id="board" onClick={handleTurn}>
